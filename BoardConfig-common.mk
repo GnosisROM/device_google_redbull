@@ -61,12 +61,17 @@ TARGET_NO_KERNEL := false
 BOARD_USES_RECOVERY_AS_BOOT := true
 BOARD_USES_METADATA_PARTITION := true
 
+# Verified Boot
+BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --set_hashtree_disabled_flag
+BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 2
+
 AB_OTA_UPDATER := true
 
 AB_OTA_PARTITIONS += \
     boot \
     vendor_boot \
     system \
+    vendor \
     vbmeta \
     dtbo \
     product \
@@ -93,8 +98,6 @@ BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
 
 # userdata.img
 TARGET_USERIMAGES_USE_F2FS := true
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 10737418240
-BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 
 # persist.img
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
