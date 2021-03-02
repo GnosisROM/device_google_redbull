@@ -650,7 +650,7 @@ endif
 
 # Subsystem silent restart
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.sys.ssr.restart_level=modem,adsp,slpi
+    persist.vendor.sys.ssr.restart_level=modem,adsp
 
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 # Sensor debug flag
@@ -840,8 +840,10 @@ HIDL_WRAPPER += qti_telephony_hidl_wrapper.xml
 PRODUCT_PACKAGES += $(HIDL_WRAPPER)
 
 # Increment the SVN for any official public releases
+ifeq ($(PRODUCT_DEVICE_SVN_OVERRIDE),)
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.vendor.build.svn=19
+	ro.vendor.build.svn=23
+endif
 
 # Enable iwlan service logging for debug
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
